@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title> Ravan's Birthday ✨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+html{
+    scroll-behavior:smooth;
+}
+.memory-section{
+    margin-top:50px;
+}
+
+.memory-title{
+    font-family:'Dancing Script',cursive;
+    font-size:2.5rem;
+    color:#ffd6f0;
+    margin-bottom:25px;
+}
+
+.memory-gallery{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.polaroid{
+    cursor:pointer;
+}
+
+.polaroid{
+    width:180px;
+    background:white;
+    padding:12px 12px 25px;
+    border-radius:6px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    transition:0.4s;
+    cursor:pointer;
+}
+
+.polaroid:hover{
+    transform:scale(1.05) rotate(0deg);
+    box-shadow:0 0 30px rgba(255,255,255,0.25);
+}
+
+
+.polaroid img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.polaroid p{
+    margin-top:12px;
+    color:#111827;
+    font-weight:600;
+    font-size:0.95rem;
+}
+
+.rotate-left{
+    transform:rotate(-5deg);
+}
+
+.rotate-right{
+    transform:rotate(5deg);
+}
+.meteor{
+    z-index:1;
+    position:absolute;
+    width:2px;
+    height:80px;
+    background:linear-gradient(white,transparent);
+    transform:rotate(45deg);
+    animation:meteor 2s linear forwards;
+}
+
+@keyframes meteor{
+    from{
+        transform:translate(0,0) rotate(45deg);
+        opacity:1;
+    }
+
+    to{
+        transform:translate(-600px,600px) rotate(45deg);
+        opacity:0;
+    }
+}
+#envelopeScreen{
+    position:fixed;
+    width:100%;
+    min-height:100vh;
+    background:#020617;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:9999;
+}
+
+.envelope{
+    font-size:6rem;
+    cursor:pointer;
+    animation:bounce 2s infinite;
+}
+
+.open-text{
+    margin-top:20px;
+    color:white;
+    font-size:1.2rem;
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+   overflow-x:hidden;
+   overflow-y:auto;
+   min-height:100vh;
+    background:
+    radial-gradient(circle at top,#1e1b4b 0%,#0f172a 45%,#020617 100%);
+    font-family:'Poppins',sans-serif;
+    color:white;
+}
+
+.lantern{
+    position:absolute;
+    bottom:-100px;
+    width:25px;
+    height:40px;
+    background:rgba(255,200,120,0.8);
+    border-radius:8px;
+    box-shadow:0 0 20px rgba(255,200,120,0.8);
+    animation:floatLantern 12s linear forwards;
+}
+
+@keyframes floatLantern{
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:0;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation: twinkle linear infinite;
+}
+
+@keyframes twinkle{
+    0%{opacity:0.2;}
+    50%{opacity:1;}
+    100%{opacity:0.2;}
+}
+
+.main{
+    position:relative;
+    z-index:5;
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    position:relative;
+    z-index:5;
+    width:100%;
+    max-width:900px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:35px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(255,105,180,0.2);
+    animation: fadeUp 1.5s ease;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.lock-screen{
+    display:block;
+}
+
+.password-box{
+    margin-top:25px;
+}
+
+input{
+    width:260px;
+    padding:14px;
+    border:none;
+    border-radius:30px;
+    outline:none;
+    text-align:center;
+    font-size:1rem;
+}
+
+button{
+    padding:14px 25px;
+    margin-top:15px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(45deg,#ff4da6,#ff80bf);
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.4s;
+    font-weight:600;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(255,105,180,0.6);
+}
+
+.hidden{
+    display:none;
+}
+
+h1{
+    font-size:4rem;
+    font-family:'Dancing Script',cursive;
+    color:#ffd6f0;
+    text-shadow:0 0 20px rgba(255,192,203,0.8);
+}
+
+.subtitle{
+    margin-top:10px;
+    color:#d1d5db;
+    font-size:1rem;
+}
+.flame{
+    transition:all 0.5s ease;
+}
+
+.typing{
+    margin-top:30px;
+    min-height:130px;
+    line-height:1.9;
+    font-size:1.1rem;
+    color:#f8fafc;
+}
+
+.photo-frame{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    overflow:hidden;
+    margin:30px auto;
+    border:5px solid rgba(255,255,255,0.4);
+    box-shadow:0 0 30px rgba(255,182,193,0.5);
+    animation: float 4s ease-in-out infinite;
+}
+
+.photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0);}
+}
+
+.countdown{
+    margin-top:15px;
+    font-size:1.3rem;
+    color:#ffd6f0;
+}
+
+.cake-section{
+    margin-top:30px;
+}
+
+.wish-text{
+    margin-bottom:20px;
+    color:#ffe4f1;
+    font-size:1.1rem;
+}
+
+.number{
+    font-size:2rem;
+    font-weight:bold;
+    color:#ffd166;
+    text-shadow:0 0 15px gold;
+    margin-top:-10px;
+}
+
+.celebration{
+    margin-top:35px;
+    animation:fadeCelebration 2s ease;
+}
+
+.celebration h2{
+    font-size:3rem;
+    color:#ffd6f0;
+    font-family:'Dancing Script',cursive;
+    text-shadow:0 0 20px pink;
+}
+
+.celebration p{
+    margin-top:15px;
+    font-size:1.2rem;
+    line-height:1.8;
+    color:#fff1f2;
+}
+
+@keyframes fadeCelebration{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+.birthday-cake{
+    position:relative;
+    width:260px;
+    margin:40px auto;
+    cursor:pointer;
+    transition:0.5s;
+}
+
+.birthday-cake:hover{
+    transform:scale(1.05);
+}
+
+.cake-top,
+.cake-middle,
+.cake-bottom{
+    border-radius:20px;
+    margin:auto;
+    position:relative;
+}
+
+.cake-top{
+    width:220px;
+    height:70px;
+    background:linear-gradient(45deg,#ffb6c1,#ff8fab);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:700;
+    font-size:1.3rem;
+    color:white;
+    box-shadow:0 5px 20px rgba(255,105,180,0.4);
+}
+
+.cake-middle{
+    width:240px;
+    height:60px;
+    background:linear-gradient(45deg,#ff8fab,#fb6f92);
+    margin-top:8px;
+}
+
+.cake-bottom{
+    width:260px;
+    height:65px;
+    background:linear-gradient(45deg,#fb6f92,#ff4d6d);
+    margin-top:8px;
+}
+
+.cake-name{
+    font-family:'Dancing Script',cursive;
+    font-size:2rem;
+}
+
+.candles{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    margin-bottom:10px;
+}
+
+.candle{
+    width:12px;
+    height:45px;
+    background:white;
+    border-radius:10px;
+    position:relative;
+}
+
+.flame{
+    width:14px;
+    height:14px;
+    background:gold;
+    border-radius:50%;
+    position:absolute;
+    top:-12px;
+    left:50%;
+    transform:translateX(-50%);
+    animation:flicker 0.5s infinite alternate;
+    box-shadow:0 0 15px gold;
+}
+.flame{
+    transition:all 0.5s ease;
+}
+.flame::after{
+    content:'';
+    position:absolute;
+    width:8px;
+    height:20px;
+    background:rgba(200,200,200,0.4);
+    border-radius:50%;
+    top:-15px;
+    left:50%;
+    transform:translateX(-50%);
+    opacity:0;
+}
+@keyframes flicker{
+    from{
+        transform:translateX(-50%) scale(1);
+        opacity:1;
+    }
+
+    to{
+        transform:translateX(-50%) scale(1.2);
+        opacity:0.8;
+    }
+}
+.cake{
+    width:240px;
+    transition:0.5s;
+    cursor:pointer;
+}
+
+.cake:hover{
+    transform:scale(1.06);
+}
+
+.final-message{
+    margin-top:30px;
+    font-size:1.3rem;
+    color:#ffe4f1;
+    line-height:1.8;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.03);}
+    100%{transform:scale(1);}
+}
+
+.hearts{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.heart{
+    position:absolute;
+    bottom:-20px;
+    color:#ff80bf;
+    animation: rise linear forwards;
+}
+
+@keyframes rise{
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+
+
+@media(max-width:768px){
+.memory-gallery{
+    gap:15px;
+}
+    h1{
+        font-size:2.8rem;
+    }
+
+    .card{
+        padding:25px;
+    }
+
+    .typing{
+        font-size:1rem;
+    }
+
+    .photo-frame{
+        width:180px;
+        height:180px;
+    }
+
+    .cake{
+        width:190px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+<div id="envelopeScreen">
+    <div class="envelope" onclick="openLetter()">
+        💌
+    </div>
+
+    <p class="open-text">Tap the letter </p>
+
+</div>
+<div class="stars" id="stars"></div>
+<div class="hearts" id="hearts"></div>
+
+<div class="main">
+
+<div class="card">
+<div class="meteors"></div>
+<!-- PASSWORD SCREEN -->
+<div class="lock-screen" id="lockScreen">
+
+<h1>Birthday Eve ✨</h1>
+
+<p class="subtitle">
+A little universe made just for Anmol ️
+</p>
+
+<div class="password-box">
+
+<input type="password" id="password" placeholder="Enter Password">
+
+<br>
+
+<button onclick="unlockPage()">
+Open Your Surprise 🎁
+</button>
+
+<p style="margin-top:15px;color:#cbd5e1;font-size:0.9rem;">
+Hint: The date we met! eg- 28jan2026
+</p>
+</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="hidden" id="content">
+
+<h1>Happiest Birthday ❤️</h1>
+
+<p class="subtitle">
+Some people never feel far away, no matter the distance ✨
+</p>
+
+<div class="photo-frame">
+<img src="herphoto.jpg" alt="Ravan">
+</div>
+
+<div class="countdown" id="countdown">
+Waiting for midnight...
+</div>
+
+<div class="typing" id="typing"></div>
+
+<div class="cake-section">
+
+<p class="wish-text">
+Make a wish and blow the candles first ✨
+</p>
+
+<div class="birthday-cake" id="cake">
+
+    <div class="candles">
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="number">
+            18
+        </div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+    </div>
+
+    <div class="cake-top">
+        <span class="cake-name">Ravana!❤️</span>
+    </div>
+
+    <div class="cake-middle"></div>
+
+    <div class="cake-bottom"></div>
+
+</div>
+
+<button id="blowBtn" onclick="blowCandles()">
+Blow Candles 💨
+</button>
+
+<button id="cutBtn" class="hidden" onclick="cutCake()">
+Cut The Cake 🎂
+</button>
+
+</div>
+
+
+<div id="afterCake" class="hidden">
+
+<div class="final-message">
+You deserve all the happiness this world can offer.  
+Thank you for existing, for smiling, and for being you. ❤️  
+No distance can stop someone from making your birthday special tonight ✨
+</div>
+
+<p style="margin-top:25px;color:#ffd6f0;">
+Made for Anmol ❤️
+</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<audio id="music" preload="auto" playsinline>
+<source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+document.getElementById("password").addEventListener("keypress",function(e){
+    if(e.key==="Enter"){
+        unlockPage();
+    }
+});
+
+setInterval(()=>{
+
+    let lantern=document.createElement("div");
+
+    lantern.classList.add("lantern");
+
+    lantern.style.left=Math.random()*100+"vw";
+
+    document.body.appendChild(lantern);
+
+    setTimeout(()=>{
+        lantern.remove();
+    },12000);
+
+},3000);
+/* ---------- STARS ---------- */
+
+for(let i=0;i<200;i++){
+
+    let star=document.createElement("div");
+    star.classList.add("star");
+
+    star.style.left=Math.random()*100+"vw";
+    star.style.top=Math.random()*100+"vh";
+
+    let size=Math.random()*3+"px";
+
+    star.style.width=size;
+    star.style.height=size;
+
+    star.style.animationDuration=(Math.random()*3+2)+"s";
+
+    document.getElementById("stars").appendChild(star);
+}
+
+/* ---------- PASSWORD ---------- */
+
+function unlockPage(){
+
+    let pass=document.getElementById("password").value;
+
+    if(pass.toLowerCase()=="8jan2026"){
+
+        document.getElementById("lockScreen").classList.add("hidden");
+        document.getElementById("content").classList.remove("hidden");
+
+        // play music automatically
+        let music = document.getElementById("music");
+       music.volume = 0.7;
+       music.play().catch(() => {});
+
+        startTyping();
+    }
+    else{
+        alert("Wrong password 🥺");
+    }
+}
+/* ---------- TYPING EFFECT ---------- */
+
+const text=`Happy Birthday to one of the prettiest souls I’ve ever known. ❤️
+
+Honestly, I still can’t believe that on 8th January, I sacrificed my sleep just to start a random conversation… and now someone sitting so far away can still feel this close to me 😊
+
+Even though we met online, our bond never really felt distant.
+Every conversation, every laugh, and every little moment with you became a memory worth keeping.
+
+I genuinely hope we meet super soon someday,
+sit together for hours,
+laugh the same way we always do,
+and create real memories beyond screens and late-night conversations 🌙
+
+I hope this birthday brings you happiness, beautiful moments, peace, and endless reasons to smile.
+I hope all your dreams slowly turn into reality and this new chapter of your life brings you closer to everything your heart wishes for ✨
+
+No matter how far life takes us, im there!
+
+Happiest Birthday Ravana! aka Anmol ❤️
+Rab mehar kare tenu 🙏`;
+`;
+
+let index=0;
+
+function startTyping(){
+
+    document.getElementById("typing").innerHTML = "";
+    index = 0;
+
+    let speed=45;
+
+    function type(){
+
+        if(index < text.length){
+
+            document.getElementById("typing").innerHTML +=
+            text.charAt(index) === '\n' ? '<br>' : text.charAt(index);
+            index++;
+
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
+}
+/* ---------- COUNTDOWN ---------- */
+
+function updateCountdown(){
+
+    const target=new Date("May 28, 2026 00:00:00");
+
+    const now=new Date();
+
+    const diff=target-now;
+
+    if(diff<=0){
+
+        document.getElementById("countdown").innerHTML=
+        "It’s her special day now 🎉";
+        return;
+    }
+
+    const h=Math.floor(diff/1000/60/60);
+    const m=Math.floor(diff/1000/60)%60;
+    const s=Math.floor(diff/1000)%60;
+
+    document.getElementById("countdown").innerHTML=
+   `${h}h ${m}m ${s}s until her birthday ✨`;
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+/* ---------- CUT CAKE ---------- */
+
+function cutCake(){
+
+    document.getElementById("cake").style.transform="scale(0.95)";
+    document.getElementById("cake").style.opacity="0.9";
+
+    document.getElementById("afterCake").classList.remove("hidden");
+
+    document.getElementById("afterCake").innerHTML=`
+
+    <div class="celebration">
+
+        <h2>जन्मदिन मुबारक </h2>
+
+        <p>
+        May this year bring you closer to youself,
+        surround you with happiness,
+        and give you countless reasons to smile every single day.
+        Tonight is all about celebrating the amazing person that you are 🌙
+        </p>
+
+      
+    </div>
+
+    <!-- MEMORY SECTION -->
+
+    <div class="memory-section">
+
+        <h2 class="memory-title">random edits✨ </h2>
+
+        <div class="memory-gallery">
+
+            <div class="polaroid rotate-left">
+                <img src="photo1.jpg" alt="">
+                <p>being woman✨</p>
+            </div>
+
+            <div class="polaroid rotate-right">
+                <img src="photo2.jpg" alt="">
+                <p>haayeee❤️</p>
+            </div>
+
+            <div class="polaroid rotate-left">
+                <img src="photo3.jpg" alt="">
+                <p>god is a woman🌙</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+    createHearts();
+}
+
+/* ---------- HEARTS ---------- */
+
+function createHearts(){
+
+    for(let i=0;i<60;i++){
+
+        let heart=document.createElement("div");
+
+        heart.classList.add("heart");
+
+        heart.innerHTML="❤";
+
+        heart.style.left=Math.random()*100+"vw";
+
+        heart.style.fontSize=(Math.random()*20+15)+"px";
+
+        heart.style.animationDuration=(Math.random()*4+4)+"s";
+
+        document.getElementById("hearts").appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },7000);
+    }
+}
+
+function blowCandles(){
+
+    document.querySelectorAll(".flame").forEach((flame,index)=>{
+
+        setTimeout(()=>{
+
+            flame.style.animation="none";
+
+            flame.animate([
+                {
+                    opacity:1,
+                    transform:'translateX(-50%) scale(1)',
+                    filter:'blur(0px)'
+                },
+                {
+                    opacity:0,
+                    transform:'translateX(-50%) scale(0)',
+                    filter:'blur(4px)'
+                }
+            ],{
+                duration:700,
+                fill:'forwards'
+            });
+
+        }, index * 200);
+
+    });
+
+    document.getElementById("blowBtn").classList.add("hidden");
+
+    setTimeout(()=>{
+
+        document.getElementById("cutBtn").classList.remove("hidden");
+
+    },1300);
+}
+function openLetter(){
+
+    document.getElementById("envelopeScreen").style.display="none";
+}
+/* ---------- METEOR EFFECT ---------- */
+
+setInterval(()=>{
+
+    let meteor=document.createElement("div");
+
+    meteor.classList.add("meteor");
+
+    meteor.style.left=Math.random()*window.innerWidth+"px";
+
+    meteor.style.top="-100px";
+
+    document.body.appendChild(meteor);
+
+    setTimeout(()=>{
+        meteor.remove();
+    },2000);
+
+},1200);
+
+
+</script>
+
+</body>
+</html>
