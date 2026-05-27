@@ -664,8 +664,8 @@ Made for Anmol ❤️
 </div>
 </div>
 
-<audio id="music" preload="auto" playsinline>
-<source src="birthday.mp3" type="audio/mpeg">
+<audio id="music" preload="auto" playsinline loop>
+    <source src="birthday.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -717,16 +717,24 @@ function unlockPage(){
 
     let pass=document.getElementById("password").value;
 
-    if(pass.toLowerCase()=="8jan2026"){
+    if(pass.trim().toLowerCase() === "8jan2026"){
 
         document.getElementById("lockScreen").classList.add("hidden");
         document.getElementById("content").classList.remove("hidden");
 
         // play music automatically
-        let music = document.getElementById("music");
-       music.volume = 0.7;
-       music.play().catch(() => {});
+      let music = document.getElementById("music");
 
+music.volume = 0.7;
+music.loop = true;
+
+music.play().catch(() => {});
+
+music.addEventListener("ended", function () {
+    music.currentTime = 0;
+    music.play();
+});
+        
         startTyping();
     }
     else{
